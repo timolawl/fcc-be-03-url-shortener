@@ -58,7 +58,7 @@ function urlHandler (db) {
             if (err) throw err;
 
             if (result) { // matching entry found. commense redirect
-                res.sendFile(result.original_url);
+                res.redirect(result.original_url);
             }
             else res.json({ "error": "This URL is not in the database, or has expired (over 180 days since creation)." });
         });
