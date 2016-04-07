@@ -14,6 +14,7 @@ Check out the working app here: [https://timolawl-url-shortener.herokuapp.com](h
 
 ##### Example creation output:
 * { "original_url": "https://www.google.com", "short_url": "https://timolawl-url-shortener.herokuapp.com/0868", "createdAt": "2016-04-07T08:59:07.495Z" }
+(Fieldname "createdAt" is used for expiring old links (180 days from creation), but is refreshed if a request is made for the same link later.
 
 ##### Example outcome:
 * https://timolawl-url-shortener.herokuapp.com/0868 will redirect to https://www.google.com
