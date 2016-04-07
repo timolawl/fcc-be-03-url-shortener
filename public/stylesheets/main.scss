@@ -99,9 +99,10 @@ a {
     &--text {
       margin-left: 1.5rem;
     }
-    &--fadedtext {
-      color: $secondary-color;
-    }
+  }
+
+  &--fadeout {
+    color: $secondary-color;
   }
 }
 

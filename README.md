@@ -13,7 +13,7 @@ Check out the working app here: [https://timolawl-url-shortener.herokuapp.com/ap
 * [https://timolawl-url-shortener.herokuapp.com/new/https://www.google.com](https://timolawl-url-shortener.herokuapp.com/new/https://www.google.com)
 
 ##### Example creation output:
-* { "original_url": "https://www.google.com", "short_url": "https://timolawl-url-shortener.herokuapp.com/0868" }
+* { "original_url": "https://www.google.com", "short_url": "https://timolawl-url-shortener.herokuapp.com/0868", "createdAt": "2016-04-07T08:59:07.495Z" }
 
 ##### Example outcome:
 * https://timolawl-url-shortener.herokuapp.com/0868 will redirect to https://www.google.com

@@ -84,7 +84,7 @@ a:active {
 .url-shortener__outcome--text {
   margin-left: 1.5rem; }
 
-.url-shortener__outcome--fadedtext {
+.url-shortener--fadeout {
   color: #a7a37e; }
 
 .footer {
