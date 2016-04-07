@@ -4,15 +4,23 @@ function urlHandler (db) {
     var urls = db.collection('urls');
     urls.createIndex({ 'createdAt': 1 }, { expireAfterSeconds: 15552000 }); // expire links after 180 days.
 
-    function generatePathName() {
+    function generatePathName (callback) {
         var urlProjection = { '_id': false };
-        var pathName = Math.floor(Math.random() * 1000); // 4 digit path number
+        var pathName = String(Math.floor(Math.random() * 1000)); // 4 digit path number
 
-        urls.findOne({ 'short_url': pathName }, urlProjection, function (err, result) {
+        while (pathName.length < 4) { // left pad the string with zeros to ensure 4 digits.
+            pathName = '0' + pathName;
+        }
+
+        urls.findOne({ 'short_url': 'https://timolawl-url-shortener.herokuapp.com/' + pathName }, urlProjection, function (err, result) {
             if (err) throw err;
 
-            if (result) return generatePathName(); // if the number is already used, generate another and check again.
-            else return pathName; // if number is not used, return this value.
+            if (result) {
+                generatePathName(callback); // if the number is already used, generate another and check again.
+            }
+            else {
+                callback(pathName); // if number is not used, return this value.
+            }
         });
     }
 
@@ -26,16 +34,19 @@ function urlHandler (db) {
 
             if (result) res.json(result);
             else {
-                urls.insert({ 'original_url': url, 'short_url': 'https://timolawl-url-shortener.herokuapp.com/' + generatePathName(), 'createdAt': new Date() }, function (err) {
-                    if (err) throw err;
-
-                    urls.findOne({ 'original_url': url }, urlProjection, function (err, doc) {
+                // generate a path name to use
+                generatePathName(function (path) {
+                    urls.insert({ 'original_url': url, 'short_url': 'https://timolawl-url-shortener.herokuapp.com/' + path, 'createdAt': new Date() }, function (err) {
                         if (err) throw err;
 
-                        res.json(doc);
+                        urls.findOne({ 'original_url': url }, urlProjection, function (err, doc) {
+                            if (err) throw err;
+
+                            res.json(doc);
+                        });
                     });
                 });
-            }
+             }
         });
     };
 
@@ -54,3 +65,5 @@ function urlHandler (db) {
     };
 
 }
+
+module.exports = urlHandler;

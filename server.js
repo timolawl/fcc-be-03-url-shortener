@@ -20,7 +20,7 @@ mongo.connect('mongodb://localhost:27017/timolawlurlshortener', function(err, db
     app.use('/public', express.static(process.cwd() + '/public'));
     app.use(favicon(process.cwd() + '/public/images/favicon.ico'));
 
-    routes(app, os);
+    routes(app, db);
 
     app.listen(app.get('port'), function() {
         console.log('Node app is running on port', app.get('port'));

@@ -1,6 +1,10 @@
 'use strict';
 
+var URLHandler = require(process.cwd() + '/app/controllers/urlHandler.server.js');
+
 module.exports = function(app, db) {
+
+    var urlHandler = new URLHandler(db);
 
     app.route('/')
         .get(function(req, res) {
