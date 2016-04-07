@@ -54,7 +54,7 @@ function urlHandler (db) {
         var shortUrl = req.url.slice(1); // removes the '/'
         var urlProjection = { '_id': false };
 
-        urls.findOne({ 'short_url': shortUrl }, urlProjection, function (err, result) {
+        urls.findOne({ 'short_url': 'https://timolawl-url-shortener.herokuapp.com/' + shortUrl }, urlProjection, function (err, result) {
             if (err) throw err;
 
             if (result) { // matching entry found. commense redirect
