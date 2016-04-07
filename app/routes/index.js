@@ -14,7 +14,7 @@ module.exports = function(app, db) {
     app.route(/^\/new\/https?:\/\/[a-zA-Z.-]+/) // response for normal link
         .get(urlHandler.getURL); // if it already exists in the db, then provide the already-generated shortened link.
 
-    app.route(/^\d{4}$/)  // response for an app-shortened link
+    app.route(/^\/\d{4}$/)  // response for an app-shortened link
         .get(urlHandler.redirectURL);
 
     app.use(function (req, res) {   // default response for any other path
