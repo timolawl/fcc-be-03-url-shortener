@@ -1,19 +1,20 @@
 'use strict';
 
 module.exports = function(app, db) {
-    var url;
 
     app.route('/')
         .get(function(req, res) {
             res.sendFile(process.cwd() + '/public/index.html');
         });
 
-    app.get(/^\/new\/https?:\/\/[a-zA-Z.-]+/, function(req, res) {
-        url = req.url.slice(5); // removes the '/new/'
-    });
+    app.route(/^\/new\/https?:\/\/[a-zA-Z.-]+/) // response for normal link
+        .get(urlHandler.getURL); // if it already exists in the db, then provide the already-generated shortened link.
 
-    app.get(/^\d{4}$/, function(req, res) {
-        
+    app.route(/^\d{4}$/)  // response for an app-shortened link
+        .get(urlHandler.redirectURL);
+
+    app.use(function (req, res) {   // default response for any other path
+        res.json({ "error": "Wrong url format. Please make sure you have a valid protocol and a real site." });
     });
 
 };
