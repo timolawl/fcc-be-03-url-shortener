@@ -2,7 +2,7 @@
 
 A full-stack JavaScript application as part of the [Free Code Camp](https://freecodecamp.com "Free Code Camp") curriculum. API Basejump #3 - URL Shortener Microservice.
 
-Check out the working app here: [https://timolawl-url-shortener.herokuapp.com/api/whoami](https://timolawl-url-shortener.herokuapp.com/api/whoami "URL Shortener Microservice").
+Check out the working app here: [https://timolawl-url-shortener.herokuapp.com](https://timolawl-url-shortener.herokuapp.com "URL Shortener Microservice").
 
 #### User stories:
 1. I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
