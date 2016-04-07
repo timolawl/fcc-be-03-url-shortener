@@ -7,7 +7,9 @@ var express = require('express'),
 
 var app = express();
 
-mongo.connect('mongodb://localhost:27017/timolawlurlshortener', function(err, db) {
+var mongoURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/timolawlurlshortener';
+
+mongo.connect(mongoURL, function(err, db) {
     if (err) {
         throw new Error('Database failed to connect!');
     }
