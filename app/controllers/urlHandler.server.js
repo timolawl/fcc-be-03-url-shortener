@@ -3,7 +3,7 @@
 function urlHandler (db) {
     var urls = db.collection('urls');
     var urlProjection = { _id: false };
-    urls.createIndex({ 'createdAt': 1 }, { expireAfterSeconds: 15552000 }); // expire links after 180 days.
+    urls.createIndex({ createdAt: 1 }, { expireAfterSeconds: 15552000 }); // expire links after 180 days.
 
     function generatePathName (callback) {
         var pathName = String(Math.floor(Math.random() * 1000)); // 4 digit path number
@@ -64,7 +64,6 @@ function urlHandler (db) {
             else res.json({ error: 'This URL is not in the database, or has expired (over 180 days since creation).' });
         });
     };
-
 }
 
 module.exports = urlHandler;
